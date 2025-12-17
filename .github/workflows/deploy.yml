@@ -8,6 +8,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:        # ✅ ajoute ça
+      contents: write   # autorise le bot à pousser sur la branche
 
     steps:
       - name: Checkout repo
@@ -16,7 +18,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20.19'   # ✅ version compatible Angular 17+
+          node-version: '20.19'
 
       - name: Install dependencies
         run: npm install
