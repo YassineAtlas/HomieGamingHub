@@ -6,7 +6,13 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+
+    "deploy": "ng build --configuration production --base-href 'https://YassineAtlas.github.io/HomieGamingHub/' && git checkout build && git rm -rf . && xcopy dist\\homiegaminghub\\browser . /E /Y && git add . && git commit -m 'Deploy build' && git push origin build --force && git checkout main"
+
+
   },
   "prettier": {
     "printWidth": 100,
