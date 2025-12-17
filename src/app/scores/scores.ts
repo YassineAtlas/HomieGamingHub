@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   template: `
     <h1>Bienvenue sur HomieGamingHub 🎮</h1>
-    <p>Ceci est la page d'accueil modifiée via le composant Scores.</p>
 
     <h2>Scores de test</h2>
 <ul>
