@@ -1,7 +1,9 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ScoresComponent } from './scores/scores';
+import { HomepageComponent } from './components/homepage/homepage';
 
 
 export const routes: Routes = [
-  { path: '', component: ScoresComponent }, // page d'accueil
+  { path: '', component: HomepageComponent }, // page d'accueil
+  { path: 'scores', component: ScoresComponent }, // page des scores
 ];
