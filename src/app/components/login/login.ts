@@ -1,0 +1,61 @@
+import { Component, effect, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+
+type Mode = 'login' | 'register';
+
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './login.html',
+  styleUrls: ['./login.css']
+})
+export class LoginComponent {
+  mode = signal<Mode>('login');
+  loading = signal(false);
+  error = signal<string | null>(null);
+
+  email = '';
+  password = '';
+
+  constructor(
+    private auth: AuthService,
+    private router: Router
+  ) {effect(() => {
+      if (auth.isAuthenticated()) {
+        router.navigate(['/scores']);
+      }
+    });}
+
+  toggleMode() {
+    this.mode.set(this.mode() === 'login' ? 'register' : 'login');
+    this.error.set(null);
+  }
+
+  async submit() {
+    this.loading.set(true);
+    this.error.set(null);
+
+    try {
+      const result =
+        this.mode() === 'login'
+          ? await this.auth.login(this.email, this.password)
+          : await this.auth.register(this.email, this.password);
+
+      if (result.error) {
+        this.error.set(result.error.message);
+        return;
+      }
+
+      // ✅ connecté → redirection
+      this.router.navigate(['/']);
+    } catch {
+      this.error.set('Something went wrong. Try again.');
+    } finally {
+      this.loading.set(false);
+    }
+  }
+}

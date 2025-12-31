@@ -1,0 +1,54 @@
+<div class="login-page">
+  <div class="card">
+    <h1 class="title">
+        <ng-container *ngIf="mode() === 'login'; else register">
+             Welcome back <span class="emoji">👋</span>
+        </ng-container>
+
+        <ng-template #register>
+            Create an account <span class="emoji">🚀</span>
+        </ng-template>
+    </h1>
+
+
+    <p class="subtitle">
+      {{
+        mode() === 'login'
+          ? 'Log in to play with friends'
+          : 'Sign up and ruin friendships'
+      }}
+    </p>
+
+    <form (ngSubmit)="submit()">
+      <input
+        type="email"
+        placeholder="Email"
+        [(ngModel)]="email"
+        name="email"
+        required
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+        name="password"
+        required
+      />
+
+      <button type="submit" [disabled]="loading()">
+        {{ loading() ? 'Please wait...' : (mode() === 'login' ? 'Login' : 'Register') }}
+      </button>
+    </form>
+
+    <p class="error" *ngIf="error()">{{ error() }}</p>
+
+    <button class="switch" (click)="toggleMode()">
+      {{
+        mode() === 'login'
+          ? "Don't have an account? Register"
+          : 'Already have an account? Login'
+      }}
+    </button>
+  </div>
+</div>

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-homepage',
@@ -9,7 +11,13 @@ import { Router } from '@angular/router';
 })
 export class HomepageComponent {
 
-  constructor(private router: Router) {}
+  constructor(auth: AuthService,private router: Router) {
+    effect(() => {
+      if (auth.isAuthenticated()) {
+        router.navigate(['/scores']);
+      }
+    });
+  }
 
   /**
    * Clic sur le bouton Login (header)

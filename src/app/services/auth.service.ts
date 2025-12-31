@@ -1,27 +1,52 @@
-import { Injectable } from '@angular/core';
-import { supabase } from '../core/supabase.client';
+import { Injectable, signal } from '@angular/core';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  async signUp(email: string, password: string) {
-    const { data, error } = await supabase.auth.signUp({ email, password });
-    if (error) throw error;
-    return data;
+  private supabase: SupabaseClient;
+
+  user = signal<any | null>(null);
+  loading = signal(true);
+
+  constructor() {
+    this.supabase = createClient(
+      environment.supabaseUrl,
+      environment.supabaseAnonKey
+    );
+
+    this.init();
   }
 
-  async signIn(email: string, password: string) {
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) throw error;
-    return data;
+  private async init() {
+    const { data } = await this.supabase.auth.getSession();
+    this.user.set(data.session?.user ?? null);
+    this.loading.set(false);
+
+    this.supabase.auth.onAuthStateChange((_event, session) => {
+      this.user.set(session?.user ?? null);
+    });
   }
 
-  async signOut() {
-    await supabase.auth.signOut();
+  // 🔐 LOGIN
+  async login(email: string, password: string) {
+    return this.supabase.auth.signInWithPassword({ email, password });
   }
 
-  async getUser() {
-    return supabase.auth.getUser();
+  // 🆕 REGISTER
+  async register(email: string, password: string) {
+    return this.supabase.auth.signUp({ email, password });
+  }
+
+  // 🚪 LOGOUT
+  async logout() {
+    await this.supabase.auth.signOut();
+    this.user.set(null);
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.user();
   }
 }
