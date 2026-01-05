@@ -2,11 +2,11 @@
    GLOBAL
 ================================ */
 .login-page {
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at top, #0f1c3a, #060b1a);
+  background: rgba(15, 23, 42, 0.85);
   padding: 20px;
   color: white;
 }

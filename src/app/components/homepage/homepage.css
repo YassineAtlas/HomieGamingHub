@@ -1,73 +1,10 @@
 /* GLOBAL */
 .homepage {
-  min-height: 100vh;
-  background: #0f172a; /* bleu nuit doux */
+  min-height: calc(100vh - 64px); /* laisse la place au header */
+  background: #0f172a;
   color: #f8fafc;
   font-family: 'Inter', system-ui, sans-serif;
 }
-
-/* HEADER */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 32px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.logo img {
-  height: 80px;
-  width: auto;
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-@keyframes breathe {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-}
-.logo img:hover {
-  transform: scale(1.08) rotate(-2deg);
-  filter: drop-shadow(0 0 10px rgba(249, 168, 212, 0.6));
-}
-
-
-.login-btn {
-  background: transparent;
-  color: #f9a8d4; /* baby pink */
-  border: 1.5px solid rgba(249, 168, 212, 0.6);
-  padding: 8px 22px;
-  border-radius: 999px;
-  font-size: 1.3rem;
-  font-weight: 600;
-  cursor: pointer;
-
-  backdrop-filter: blur(6px);
-  transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    transform 0.2s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
-}
-
-/* HOVER */
-.login-btn:hover {
-  background: rgba(249, 168, 212, 0.15);
-  border-color: #f9a8d4;
-  box-shadow: 0 0 18px rgba(249, 168, 212, 0.5);
-  transform: translateY(-2px);
-}
-
-/* CLICK */
-.login-btn:active {
-  transform: scale(0.95);
-  box-shadow: 0 0 8px rgba(249, 168, 212, 0.4);
-}
-
 
 /* HERO */
 .hero {
@@ -78,7 +15,7 @@
 .hero h1 {
   font-size: 3rem;
   font-weight: 800;
-  color: #f9a8d4; /* baby pink */
+  color: #f9a8d4;
 }
 
 .subtitle {
@@ -87,7 +24,7 @@
   opacity: 0.9;
 }
 
-/* EMOJIS */
+/* EMOJI CARDS */
 .emoji-row {
   display: flex;
   justify-content: center;
@@ -113,44 +50,21 @@
 
   animation: goofyIdle 5.5s infinite ease-in-out;
 }
-.emoji-card:nth-child(1) {
-  animation-delay: 0s;
-}
-.emoji-card:nth-child(2) {
-  animation-delay: 1.3s;
-}
-.emoji-card:nth-child(3) {
-  animation-delay: 2.6s;
-}
-.emoji-card:nth-child(4) {
-  animation-delay: 3.9s;
-}
+
+/* idle décalé */
+.emoji-card:nth-child(1) { animation-delay: 0s; }
+.emoji-card:nth-child(2) { animation-delay: 1.3s; }
+.emoji-card:nth-child(3) { animation-delay: 2.6s; }
+.emoji-card:nth-child(4) { animation-delay: 3.9s; }
+
 @keyframes goofyIdle {
-  0% {
-    transform: translateY(0) rotate(0deg) scale(1);
-  }
-
-  20% {
-    transform: translateY(-4px) rotate(-1.5deg) scale(1.02);
-  }
-
-  40% {
-    transform: translateY(2px) rotate(1deg) scale(0.99);
-  }
-
-  60% {
-    transform: translateY(-6px) rotate(-2deg) scale(1.03);
-  }
-
-  80% {
-    transform: translateY(1px) rotate(1.2deg) scale(1);
-  }
-
-  100% {
-    transform: translateY(0) rotate(0deg) scale(1);
-  }
+  0%   { transform: translateY(0) rotate(0deg) scale(1); }
+  20%  { transform: translateY(-4px) rotate(-1.5deg) scale(1.02); }
+  40%  { transform: translateY(2px) rotate(1deg) scale(0.99); }
+  60%  { transform: translateY(-6px) rotate(-2deg) scale(1.03); }
+  80%  { transform: translateY(1px) rotate(1.2deg) scale(1); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
 }
-
 
 .emoji-card span {
   display: block;
@@ -164,7 +78,6 @@
   background: rgba(249, 168, 212, 0.15);
   box-shadow: 0 12px 30px rgba(249, 168, 212, 0.35);
 }
-
 
 /* CTA */
 .cta {
@@ -191,28 +104,21 @@
   opacity: 0.6;
   font-size: 0.85rem;
 }
+
 /* ===== MOBILE : NO ANIMATIONS ===== */
 @media (max-width: 768px) {
-  .emoji-card,
-  .emoji,
-  .logo img,
-  .login-btn {
+  .emoji-card {
+    width: 45%;
     animation: none !important;
     transition: none !important;
     transform: none !important;
   }
 }
+
 @media (hover: none) {
-  .emoji-card:hover,
-  .login-btn:hover,
-  .logo img:hover {
+  .emoji-card:hover {
     transform: none;
     box-shadow: none;
     background: inherit;
-  }
-}
-@media (max-width: 768px) {
-  .emoji-card {
-    width: 45%;
   }
 }

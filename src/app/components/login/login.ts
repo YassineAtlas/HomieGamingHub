@@ -20,19 +20,28 @@ export class LoginComponent {
 
   email = '';
   password = '';
+  username = '';
+
 
   constructor(
     private auth: AuthService,
     private router: Router
-  ) {effect(() => {
-      if (auth.isAuthenticated()) {
-        router.navigate(['/scores']);
+  ) {
+    effect(() => {
+      // ⛔ attendre Supabase
+      if (!this.auth.authReady()) return;
+
+      // ✅ déjà connecté → games
+      if (this.auth.user()) {
+        this.router.navigate(['/games']);
       }
-    });}
+    });
+  }
 
   toggleMode() {
     this.mode.set(this.mode() === 'login' ? 'register' : 'login');
     this.error.set(null);
+    this.username = '';
   }
 
   async submit() {
@@ -43,15 +52,19 @@ export class LoginComponent {
       const result =
         this.mode() === 'login'
           ? await this.auth.login(this.email, this.password)
-          : await this.auth.register(this.email, this.password);
+          : await this.auth.registerWithUsername(this.email, this.password, this.username);
 
-      if (result.error) {
-        this.error.set(result.error.message);
-        return;
-      }
+      if (result?.error) {
+          if (result.error.message.includes('duplicate')) {
+            this.error.set('Username already taken');
+          } else {
+            this.error.set(result.error.message);
+          }
+          return;
+        } 
 
       // ✅ connecté → redirection
-      this.router.navigate(['/']);
+      this.router.navigate(['/games']);
     } catch {
       this.error.set('Something went wrong. Try again.');
     } finally {

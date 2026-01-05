@@ -20,6 +20,15 @@
     </p>
 
     <form (ngSubmit)="submit()">
+        <input
+  *ngIf="mode() === 'register'"
+  type="text"
+  placeholder="Username"
+  [(ngModel)]="username"
+  name="username"
+  required
+    />
+
       <input
         type="email"
         placeholder="Email"

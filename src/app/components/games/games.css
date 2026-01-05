@@ -1,0 +1,191 @@
+.games-page {
+  min-height: calc(100vh - 64px);
+  background: #0f172a;
+  color: #f8fafc;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: #f9a8d4;
+}
+
+.subtitle {
+  margin-top: 12px;
+  font-size: 1.05rem;
+  opacity: 0.9;
+}
+
+/* EMOJI CARDS */
+.emoji-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: 48px 0;
+  flex-wrap: wrap;
+}
+
+.emoji-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  padding: 22px 18px;
+  width: 150px;
+
+  font-size: 2.4rem;
+  text-align: center;
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+
+  animation: goofyIdle 5.5s infinite ease-in-out;
+}
+
+.emoji-card span {
+  display: block;
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+
+.emoji-card small {
+  display: block;
+  font-size: 0.65rem;
+  opacity: 0.6;
+  margin-top: 4px;
+}
+
+/* DISABLED / COMING SOON */
+.emoji-card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.emoji-card.disabled:hover {
+  transform: none;
+  box-shadow: none;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ANIMATIONS (identiques homepage) */
+@keyframes goofyIdle {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); }
+  20%  { transform: translateY(-4px) rotate(-1.5deg) scale(1.02); }
+  40%  { transform: translateY(2px) rotate(1deg) scale(0.99); }
+  60%  { transform: translateY(-6px) rotate(-2deg) scale(1.03); }
+  80%  { transform: translateY(1px) rotate(1.2deg) scale(1); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+/* MOBILE : PAS D’ANIMATIONS */
+@media (max-width: 768px) {
+  .emoji-card {
+    width: 45%;
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+/* EMOJI CARDS */
+.emoji-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: 48px 0;
+  flex-wrap: wrap;
+}
+
+.emoji-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  padding: 22px 18px;
+  width: 150px;
+
+  font-size: 2.4rem;
+  text-align: center;
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+
+  animation: goofyIdle 5.5s infinite ease-in-out;
+}
+
+/* 💡 DÉCALAGE IDLE COMME HOMEPAGE */
+.emoji-card:nth-child(1) { animation-delay: 0s; }
+.emoji-card:nth-child(2) { animation-delay: 1.3s; }
+.emoji-card:nth-child(3) { animation-delay: 2.6s; }
+.emoji-card:nth-child(4) { animation-delay: 3.9s; }
+
+/* TEXT */
+.emoji-card span {
+  display: block;
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+
+.emoji-card small {
+  display: block;
+  font-size: 0.65rem;
+  opacity: 0.6;
+  margin-top: 4px;
+}
+
+/* ✨ HOVER FUN (IDENTIQUE HOMEPAGE) */
+.emoji-card:hover {
+  animation-play-state: paused;
+  transform: translateY(-8px) scale(1.08) rotate(-2deg);
+  background: rgba(249, 168, 212, 0.15);
+  box-shadow: 0 12px 30px rgba(249, 168, 212, 0.35);
+}
+
+/* DISABLED */
+.emoji-card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.emoji-card.disabled:hover {
+  animation-play-state: running;
+  transform: none;
+  box-shadow: none;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ANIMATION IDLE */
+@keyframes goofyIdle {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); }
+  20%  { transform: translateY(-4px) rotate(-1.5deg) scale(1.02); }
+  40%  { transform: translateY(2px) rotate(1deg) scale(0.99); }
+  60%  { transform: translateY(-6px) rotate(-2deg) scale(1.03); }
+  80%  { transform: translateY(1px) rotate(1.2deg) scale(1); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+/* 📱 MOBILE : PAS D’ANIMATIONS */
+@media (max-width: 768px) {
+  .emoji-card {
+    width: 45%;
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+@media (hover: none) {
+  .emoji-card:hover {
+    transform: none;
+    box-shadow: none;
+    background: inherit;
+  }
+}

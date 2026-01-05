@@ -1,0 +1,135 @@
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 32px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.username {
+width: 100%;
+color: rgba(255, 200, 230, 0.801);
+text-align: left;
+cursor: pointer;
+border-radius: 4px;
+padding: 6px 12px;
+font-size: 0.9rem;
+font-weight: 1500;
+background: rgba(75, 58, 67, 0.329);
+
+}
+
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo img {
+  height: 80px;
+  width: auto;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.08) rotate(-2deg);
+  filter: drop-shadow(0 0 10px rgba(249, 168, 212, 0.6));
+}
+
+/* LOGIN BUTTON */
+.login-btn {
+  background: transparent;
+  color: #f9a8d4;
+  border: 1.5px solid rgba(249, 168, 212, 0.6);
+  padding: 8px 22px;
+  border-radius: 999px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.login-btn:hover {
+  background: rgba(249, 168, 212, 0.15);
+  border-color: #f9a8d4;
+  box-shadow: 0 0 18px rgba(249, 168, 212, 0.5);
+  transform: translateY(-2px);
+}
+
+/* PROFILE */
+.profile {
+  position: relative;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f9a8d4;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* MENU */
+.menu {
+  position: absolute;
+  right: 0;
+  top: 54px;
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 8px;
+  min-width: 160px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+.menu button {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #f8fafc;
+  padding: 10px 14px;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.menu button:hover {
+  background: rgba(249, 168, 212, 0.15);
+}
+
+.menu .logout {
+  color: #ff8a8a;
+}
+
+.menu hr {
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 6px 0;
+}
+
+/* MOBILE : NO ANIMATIONS */
+@media (max-width: 768px) {
+  .logo img,
+  .login-btn {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

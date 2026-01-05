@@ -1,0 +1,34 @@
+<header class="header">
+  <!-- LOGO -->
+  <div class="logo" (click)="goHome()">
+    <img src="images/homielogo.png" alt="HomieGamingHub logo" />
+  </div>
+
+  <!-- DÉCONNECTÉ -->
+  <button
+    *ngIf="auth.authReady() && !auth.user()"
+    class="login-btn"
+    (click)="goToLogin()"
+  >
+    Login
+  </button>
+
+  <!-- CONNECTÉ -->
+  <div *ngIf="auth.authReady() && auth.user()" class="profile">
+    <div class="avatar" (click)="toggleMenu()">
+      {{ auth.username?.charAt(0)?.toUpperCase() || '?' }}
+    </div>
+
+    <div class="menu" *ngIf="menuOpen()">
+      <div class="username">
+        @{{ auth.username || 'user' }}
+      </div>
+      <hr />
+
+      <button (click)="goToProfile()">Profile</button>
+      <button (click)="goToSettings()">Settings</button>
+      <hr />
+      <button class="logout" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,24 @@
+<div class="games-page">
+  <main class="hero">
+    <h1>Your games 🎮</h1>
+
+    <p class="subtitle">
+      Choose a game and ruin friendships responsibly.
+    </p>
+
+    <div class="emoji-row">
+      <div
+        class="emoji-card"
+        (click)="clickgame()"
+        *ngFor="let game of games"
+        [class.disabled]="game.comingSoon"
+      >
+        {{ game.emoji }}
+        <span>
+          {{ game.title }}
+          <small *ngIf="game.comingSoon">Coming soon</small>
+        </span>
+      </div>
+    </div>
+  </main>
+</div>
